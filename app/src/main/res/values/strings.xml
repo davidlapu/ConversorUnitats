@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Conversor unitats</string>
+    <string name="titol">Conversor d\'unitats de logitud</string>
+
+    <string-array name="options">
+        <item>De polzada a centímetre</item>
+        <item>De iarda a metre</item>
+        <item>De milla a quilòmetre</item>
+        <item>De centímetre a polzada</item>
+        <item>De metre a iarda</item>
+        <item>De quilòmetre a milla</item>
+    </string-array>
+</resources>
