@@ -47,7 +47,8 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/calcularButton"
-        android:layout_margin="10sp"
+        android:layout_margin="15sp"
+        android:textSize="35sp"
         android:visibility="invisible"/>
 
 

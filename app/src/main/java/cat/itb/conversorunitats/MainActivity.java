@@ -1,17 +1,14 @@
 package cat.itb.conversorunitats;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-import android.app.Activity;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -37,38 +34,35 @@ public class MainActivity extends AppCompatActivity {
 
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         dropDown.setAdapter(adapter);
-        dropDown.setOnItemSelectedListener(new SpinnerActivity());
 
         calcular.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String input = String.valueOf(inputData.getText());
-                Double inputNumber, res;
+                mostraCalcul();
+            }
+        });
 
-                if (!input.isEmpty()) {
-                    inputNumber = Double.parseDouble(input);
-                    res = calcularConversio(inputNumber, dropDown.getSelectedItemPosition());
-                    resTextView.setText(String.format("%.2f", res));
-                    resTextView.setVisibility(View.VISIBLE);
-                    //Toast.makeText(MainActivity.this, String.valueOf(inputNumber), Toast.LENGTH_SHORT).show();
-                }
-                //
+        inputData.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if (keyCode == 66) mostraCalcul();
+                return false;
             }
         });
     }
 
-    public class SpinnerActivity extends Activity implements AdapterView.OnItemSelectedListener {
-        public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
-            /*
-            parent.getItemAtPosition(pos);
-            Toast.makeText(MainActivity.this, String.valueOf(pos), Toast.LENGTH_SHORT).show();
-             */
-        }
+    public void mostraCalcul() {
+        String input = String.valueOf(inputData.getText());
+        Double inputNumber, res;
 
-        public void onNothingSelected(AdapterView<?> parent) {
-            // Another interface callback
+        if (!input.isEmpty()) {
+            inputNumber = Double.parseDouble(input);
+            res = calcularConversio(inputNumber, dropDown.getSelectedItemPosition());
+            resTextView.setText(String.format("%.2f", res));
+            resTextView.setVisibility(View.VISIBLE);
         }
     }
+
 
     public double calcularConversio(double input, int tipus) {
         double res;
@@ -78,7 +72,9 @@ public class MainActivity extends AppCompatActivity {
             case 1 : res = input / 1.094; break;
             case 2 : res = input * 1.609; break;
             case 3 : res = input / 2.54; break;
-            //case 4
+            case 4 : res = input * 1.094; break;
+            case 5 : res = input / 1.609; break;
+
             default : res = 0;
         }
 
