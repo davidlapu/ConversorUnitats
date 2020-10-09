@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void mostraCalcul() {
         String input = String.valueOf(inputData.getText());
-        Double inputNumber, res;
+        double inputNumber, res;
 
         if (!input.isEmpty()) {
             inputNumber = Double.parseDouble(input);
